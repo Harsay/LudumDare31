@@ -8,6 +8,8 @@ public class GameKeys {
 	public static final int Down = Keys.S;
 	public static final int Left = Keys.A;
 	public static final int Right = Keys.D;
+	public static final int Action1 = Keys.N;
+	public static final int Action2 = Keys.M;
 	public static final int ToggleFullscreen = Keys.F11;
 
 }

@@ -49,7 +49,13 @@ public class GameScreen implements Screen {
 	}
 	
 	public void draw(float delta) {
-		
+		spriteBatch.begin();
+		{
+			spriteBatch.draw(game.assets.image, 0, 0);
+			game.assets.big.setColor(0, 0, 0, 1);
+			game.assets.big.draw(spriteBatch, "LD31 TEMPLATE", 200, 400);
+		}
+		spriteBatch.end();
 	}
 
 	@Override

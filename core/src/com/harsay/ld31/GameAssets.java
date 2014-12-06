@@ -1,6 +1,7 @@
 package com.harsay.ld31;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 public class GameAssets {
+	
+	Sound warnSound;
 	
 	TextureAtlas atlas;
 	
@@ -34,6 +37,8 @@ public class GameAssets {
 		parameter.size = 18;
 		small = generator.generateFont(parameter);
 		generator.dispose();
+		
+		warnSound = Gdx.audio.newSound(loadFile("warn.wav"));
 	}
 	
 	public FileHandle loadFile(String str) {

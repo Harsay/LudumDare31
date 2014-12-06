@@ -8,6 +8,8 @@ public class PlayScreen extends GameScreen {
 	
 	Player player;
 	public ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
+	
+	public float time = 0;
 
 	public PlayScreen(MyGame game) {
 		super(game);
@@ -15,10 +17,13 @@ public class PlayScreen extends GameScreen {
 		backgroundColor.set(c, c, c, 1);
 		player = new Player(game, MyGame.WIDTH/2, MyGame.HEIGHT/2, 30);
 		obstacles.add(new Obstacle(game, 600, 0, 300, 400));
+		obstacles.add(new Obstacle(game, 100, 0, 300, 400));
+		obstacles.add(new Obstacle(game, 1200, 0, 300, 400));
 	}
 	
 	public void update(float delta) {
 		super.update(delta);
+		Stopwatch.update(delta);
 		player.update(delta);
 		if(player.alive) {
 			for(int i=0; i < obstacles.size(); i++) {
@@ -40,14 +45,13 @@ public class PlayScreen extends GameScreen {
 				o.draw(shapeRenderer, spriteBatch);
 			}
 		}
-		shapeRenderer.end();
-		
+		shapeRenderer.end();		
 		
 		spriteBatch.begin();
 		{
 			// HUD AND STUFF
 			//game.assets.big.setColor(1, 1, 1, 1);
-			game.assets.medium.draw(spriteBatch, "00:13:37", 20, MyGame.HEIGHT-20);
+			game.assets.medium.draw(spriteBatch, Stopwatch.getString(), 20, MyGame.HEIGHT-20);
 		}
 		spriteBatch.end();
 	}

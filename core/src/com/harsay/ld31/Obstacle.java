@@ -15,6 +15,7 @@ public class Obstacle extends Entity {
 	public boolean spawning = true;
 	public boolean show = false;
 	public boolean alive = false;
+	public boolean killed = false;
 	
 	public float spawnFlashTime = 0.3f;
 	public float spawnFlashTimeElapsed = 0;
@@ -23,11 +24,15 @@ public class Obstacle extends Entity {
 	public float timeToStartSpawning;
 	public float timeBeforeSpawnElapsed = 0;
 	
-	public Obstacle(MyGame game, float x, float y, float width, float height, float timeToStartSpawning) {
+	public float timeAlive;
+	public float timeAliveElapsed = 0;
+	
+	public Obstacle(MyGame game, float x, float y, float width, float height, float timeToStartSpawning, float timeAlive) {
 		super(game, x, y);
 		this.width = width;
 		this.height = height;
 		this.timeToStartSpawning = timeToStartSpawning;
+		this.timeAlive = timeAlive;
 		
 		rectangle = new Rectangle();
 		updateRectangle();
@@ -50,8 +55,21 @@ public class Obstacle extends Entity {
 				spawnFlashes++;
 				show = !show;
 				game.assets.warnSound.play();
-				if(spawnFlashes == 5) spawning = false;
+				if(spawnFlashes == 5)  {
+					spawning = false;
+					spawnFlashes = 0;
+					spawnFlashTimeElapsed = 0;
+					if(killed)  game.obstacles.remove(this);
+				}
 			}
+			return;
+		}
+		
+		///
+		
+		if(timeAlive > 0) {
+			timeAliveElapsed += delta;
+			if(timeAliveElapsed >= timeAlive) kill();
 		}
 		
 		updateRectangle();
@@ -72,6 +90,11 @@ public class Obstacle extends Entity {
 		rectangle.y = y;
 		rectangle.width = width;
 		rectangle.height = height;
+	}
+	
+	public void kill() {
+		killed = true;
+		spawning = true;
 	}
 
 }

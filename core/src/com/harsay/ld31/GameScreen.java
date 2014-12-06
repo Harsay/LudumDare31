@@ -39,7 +39,7 @@ public class GameScreen implements Screen {
 	}
 	
 	public void update(float delta) {
-		if(Gdx.input.isKeyJustPressed(GameKeys.ToggleFullscreen)) {
+		if(Gdx.input.isKeyJustPressed(GameKeys.TOGGLEFULLSCREEN)) {
 			if(Gdx.graphics.isFullscreen()) {
 				Gdx.graphics.setDisplayMode(1920/2, 1080/2, false);
 			} else {
@@ -49,13 +49,7 @@ public class GameScreen implements Screen {
 	}
 	
 	public void draw(float delta) {
-		spriteBatch.begin();
-		{
-			spriteBatch.draw(game.assets.image, 0, 0);
-			game.assets.big.setColor(0, 0, 0, 1);
-			game.assets.big.draw(spriteBatch, "LD31 TEMPLATE", 200, 400);
-		}
-		spriteBatch.end();
+
 	}
 
 	@Override
@@ -89,7 +83,6 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
-		System.out.println("Show");
 		
 	}
 
@@ -100,14 +93,13 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void pause() {
-		System.out.println("Pause");
+		//foregroundColor.set(0, 0, 0, 0.8f);
 		
 	}
 
 	@Override
 	public void resume() {
-		System.out.println("Resume");
-		
+		//foregroundColor.set(0, 0, 0, 0);		
 	}
 
 	@Override

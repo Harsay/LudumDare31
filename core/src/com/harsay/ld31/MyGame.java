@@ -12,7 +12,7 @@ public class MyGame extends Game {
 	@Override
 	public void create() {
 		assets = new GameAssets();
-		setScreen(new GameScreen(this));
+		setScreen(new PlayScreen(this));
 	}
 	
 }

@@ -29,7 +29,7 @@ public class GameAssets {
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 200;
 		big = generator.generateFont(parameter); 
-		parameter.size = 36;
+		parameter.size = 72;
 		medium = generator.generateFont(parameter);
 		parameter.size = 18;
 		small = generator.generateFont(parameter);

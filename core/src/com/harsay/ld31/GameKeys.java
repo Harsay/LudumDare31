@@ -4,12 +4,11 @@ import com.badlogic.gdx.Input.Keys;
 
 public class GameKeys {
 	
-	public static final int Up = Keys.W;
-	public static final int Down = Keys.S;
-	public static final int Left = Keys.A;
-	public static final int Right = Keys.D;
-	public static final int Action1 = Keys.N;
-	public static final int Action2 = Keys.M;
-	public static final int ToggleFullscreen = Keys.F11;
+	public static final int UP = Keys.W;
+	public static final int DOWN = Keys.S;
+	public static final int LEFT = Keys.A;
+	public static final int RIGHT = Keys.D;
+	public static final int ACTION = Keys.SPACE;
+	public static final int TOGGLEFULLSCREEN = Keys.F11;
 
 }

@@ -9,7 +9,7 @@ import com.harsay.ld31.MyGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "Ludum Dare 31";
+		config.title = "ULTRA RECTAGON";
 		config.width = 1920/2;
 		config.height = 1080/2;
 		

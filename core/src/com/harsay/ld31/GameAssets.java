@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 public class GameAssets {
 	
 	Sound warnSound;
+	Sound startSound;
+	Sound lostSound;
 	
 	TextureAtlas atlas;
 	
@@ -39,6 +41,9 @@ public class GameAssets {
 		generator.dispose();
 		
 		warnSound = Gdx.audio.newSound(loadFile("warn.wav"));
+		startSound = Gdx.audio.newSound(loadFile("start.wav"));
+		lostSound = Gdx.audio.newSound(loadFile("lost.wav"));
+
 	}
 	
 	public FileHandle loadFile(String str) {

@@ -21,7 +21,8 @@ public class PlayScreen extends GameScreen {
 
 	public int seqID = 0;
 	
-	public boolean lost = false;
+	public boolean stop = false;
+	
 	
 	public PlayScreen(MyGame game) {
 		super(game);
@@ -30,15 +31,6 @@ public class PlayScreen extends GameScreen {
 		player = new Player(game, MyGame.WIDTH/2, MyGame.HEIGHT/2, 30);
 		sequences = new GameSequence(game);
 		game.obstacles = getSequence(seqID);
-		//addObstacle(600, 0, 300, 400, 1.0f, 5.0f);
-		/*for(int i=1; i<=20; i++) {
-			addObstacle(400*i, MyGame.HEIGHT-(500-100*i), 300, (500-100*i), 1.0f, new Goal[] {
-					new Goal(0, MyGame.HEIGHT-100, -1f, 100, 1.0f*i)
-			});
-			addObstacle(400*i, 0, 300, 400-100*i, 1.0f, new Goal[] {
-					new Goal(0, 0, -1f, 900, 1.0f*i)
-			});
-		}*/
 	}
 	
 	public ArrayList<Obstacle> getSequence(int id) {
@@ -60,12 +52,15 @@ public class PlayScreen extends GameScreen {
 	public void update(float delta) {
 		super.update(delta);
 		
+		if(stop) return;
+		
 		if(!gameLive) {
 			if(Gdx.input.isKeyJustPressed(GameKeys.UP) || Gdx.input.isKeyJustPressed(GameKeys.DOWN) || Gdx.input.isKeyJustPressed(GameKeys.LEFT) || Gdx.input.isKeyJustPressed(GameKeys.RIGHT)) {
 				gameLive = true;
 				Stopwatch.restart();
 				Stopwatch.start();
 				flashScreen();
+				game.assets.startSound.play();
 			} else {
 				return;
 			}
@@ -75,6 +70,18 @@ public class PlayScreen extends GameScreen {
 			seqID++;
 			sequences.finished = false;
 			if(seqID+1 <= sequences.sequences.size()) game.obstacles = getSequence(seqID);
+			else {
+				foregroundColor.set(1, 1, 1, 1);
+				Stopwatch.stop();
+				stop = true;
+				Timer.schedule(new Task() {
+					@Override
+					public void run() {
+						foregroundColor.set(1,1,1,0);
+						game.setScreen(new WinScreen(game));
+					}
+				}, 0.1f);
+			}
 		}
 		sequences.update();
 		Stopwatch.update(delta);
@@ -110,7 +117,7 @@ public class PlayScreen extends GameScreen {
 				game.assets.big.setColor(1, 1, 1, 1);
 				game.assets.big.drawMultiLine(spriteBatch, "ULTRA REKTAGON", 130, 800);
 				game.assets.medium.draw(spriteBatch, "Press arrows to move.", 500, 400);
-				game.assets.small.draw(spriteBatch, "Game made by Harsay for Ludum Dare 31 compo", 460, 36);
+				game.assets.small.draw(spriteBatch, "Game made by Harsay for Ludum Dare 31 compo. Press F11 to toggle fullscreen mode.", 100, 36);
 			}
 			game.assets.medium.draw(spriteBatch, Stopwatch.getString(), 20, MyGame.HEIGHT-20);
 		}

@@ -128,16 +128,25 @@ public class GameSequence {
 		sequences.add(seq4);
 		
 		Obstacle[] seq5 = new Obstacle[] {
+				new Obstacle(game, 220, 0, 80, MyGame.HEIGHT, 1.0f, 5.0f),
+				new Obstacle(game, 460, 0, 80, MyGame.HEIGHT, 1.0f, 5.0f),
+				new Obstacle(game, 700, 0, 80, MyGame.HEIGHT, 1.0f, 5.0f),
+				new Obstacle(game, 940, 0, 80, MyGame.HEIGHT, 1.0f, 5.0f),
+				new Obstacle(game, 1180, 0, 80, MyGame.HEIGHT, 1.0f, 5.0f),
+				new Obstacle(game, 1400, 0, 80, MyGame.HEIGHT, 1.0f, 5.0f),
+				new Obstacle(game, 1640, 0, 80, MyGame.HEIGHT, 1.0f, 5.0f),
 				
+				new Obstacle(game, 0, 180, MyGame.WIDTH, 80, 1.0f, 5.0f),
+				new Obstacle(game, 0, 420, MyGame.WIDTH, 80, 1.0f, 5.0f),
+				new Obstacle(game, 0, 660, MyGame.WIDTH, 80, 1.0f, 5.0f),
+				new Obstacle(game, 0, 900, MyGame.WIDTH, 80, 1.0f, 5.0f),
 		};
+	
 		sequences.add(seq5);
-		
-		
-
 	}
 	
 	public Obstacle[] getSequence(int id) {
-		return sequences.get(id+4);
+		return sequences.get(id);
 	}
 	
 	public void update() {

@@ -23,9 +23,9 @@ public class GameAssets {
 	BitmapFont small;
 	
 	public GameAssets() {
-		atlas = new TextureAtlas(loadFile("game.atlas"));
+		//atlas = new TextureAtlas(loadFile("game.atlas"));
 		
-		image = loadTexture("badlogic");
+		//image = loadTexture("badlogic");
 		
 		// Font
  		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("visitor1.ttf"));

@@ -20,23 +20,23 @@ public class Goal {
 	}
 	
 	public void setObstacle(Obstacle o) {
-		if(x > 0) x = x - o.x;
+		if(x > -1) x = x - o.x;
 		else x = 0;
-		if(y > 0) y = y - o.y;
+		if(y > -1) y = y - o.y;
 		else y = 0;
-		if(width > 0) width = width - o.width;
+		if(width > -1) width = width - o.width;
 		else width = 0;
-		if(height > 0) height = height - o.height;
+		if(height > -1) height = height - o.height;
 		else height = 0;
 	}
 	
 	public void update(Obstacle o, float delta) {
 		timeElapsed += delta;
 		
-		o.x += x * delta * timeToDoIt;
-		o.y += y * delta * timeToDoIt;
-		o.width += width * delta * timeToDoIt;
-		o.height += height * delta * timeToDoIt;
+		o.x += x * delta / timeToDoIt;
+		o.y += y * delta / timeToDoIt;
+		o.width += width * delta / timeToDoIt;
+		o.height += height * delta / timeToDoIt;
 		
 		System.out.println("Time elapsed: "+timeElapsed+" | x = "+o.x);
 		

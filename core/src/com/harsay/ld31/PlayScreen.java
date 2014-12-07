@@ -16,10 +16,14 @@ public class PlayScreen extends GameScreen {
 		backgroundColor.set(c, c, c, 1);
 		player = new Player(game, MyGame.WIDTH/2, MyGame.HEIGHT/2, 30);
 		//addObstacle(600, 0, 300, 400, 1.0f, 1.0f);
-		addObstacle(600, 0, 300, 400, 1.0f, new Goal[] { 
-				new Goal(900f, MyGame.HEIGHT-600, 0f, 600f, 1.0f),
-				new Goal(1f, 0f, MyGame.WIDTH, 100f, 1.0f)
-		});
+		for(int i=1; i<=20; i++) {
+			addObstacle(400*i, MyGame.HEIGHT-(500-100*i), 300, (500-100*i), 1.0f, new Goal[] {
+					new Goal(0, MyGame.HEIGHT-100, -1f, 100, 1.0f*i)
+			});
+			addObstacle(400*i, 0, 300, 400-100*i, 1.0f, new Goal[] {
+					new Goal(0, 0, -1f, 900, 1.0f*i)
+			});
+		}
 		
 	}
 	
@@ -62,6 +66,8 @@ public class PlayScreen extends GameScreen {
 	}
 	
 	public void endGame() {
+		game.obstacles.clear();
+		game.setScreen(new PlayScreen(game));
 		player.kill();
 		Stopwatch.stop();
 		// TODO: end sequence

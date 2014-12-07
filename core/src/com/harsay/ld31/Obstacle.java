@@ -68,7 +68,7 @@ public class Obstacle extends Entity {
 				spawnFlashes++;
 				show = !show;
 				game.assets.warnSound.play();
-				if(spawnFlashes == 5)  {
+				if(spawnFlashes == 3)  {
 					spawning = false;
 					spawnFlashes = 0;
 					spawnFlashTimeElapsed = 0;

@@ -46,6 +46,15 @@ public class GameScreen implements Screen {
 				Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
 			}
 		}
+		
+		if(Gdx.input.isKeyJustPressed(GameKeys.TOGGLEMUSIC)) {
+			if(game.assets.music.getVolume() != 0) {
+				game.assets.music.setVolume(0);
+			}
+			else {
+				game.assets.music.setVolume(0.1f);
+			}
+		}
 	}
 	
 	public void draw(float delta) {

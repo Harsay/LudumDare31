@@ -8,7 +8,7 @@ public class GameKeys {
 	public static final int DOWN = Keys.DOWN;
 	public static final int LEFT = Keys.LEFT;
 	public static final int RIGHT = Keys.RIGHT;
-	public static final int ACTION = Keys.SPACE;
+	public static final int TOGGLEMUSIC = Keys.P;
 	public static final int TOGGLEFULLSCREEN = Keys.F11;
 
 }

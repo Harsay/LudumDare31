@@ -1,6 +1,7 @@
 package com.harsay.ld31;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,6 +19,8 @@ public class GameAssets {
 	Sound introSound;
 	Sound rektSound;
 	Sound wonSound;
+	
+	Music music;
 	
 	TextureAtlas atlas;
 	
@@ -49,7 +52,10 @@ public class GameAssets {
 		introSound = Gdx.audio.newSound(loadFile("intro.ogg"));
 		rektSound = Gdx.audio.newSound(loadFile("rekt.ogg"));
 		wonSound = Gdx.audio.newSound(loadFile("won.ogg"));
-
+		music = Gdx.audio.newMusic(loadFile("music.wav"));
+		music.setLooping(true);
+		music.setVolume(0.1f);
+		
 	}
 	
 	public FileHandle loadFile(String str) {

@@ -32,6 +32,7 @@ public class PlayScreen extends GameScreen {
 		sequences = new GameSequence(game);
 		game.obstacles = getSequence(seqID);
 		game.assets.introSound.play();
+		game.assets.music.stop();
 	}
 	
 	public ArrayList<Obstacle> getSequence(int id) {
@@ -62,6 +63,7 @@ public class PlayScreen extends GameScreen {
 				Stopwatch.start();
 				flashScreen();
 				game.assets.startSound.play();
+				game.assets.music.play();
 			} else {
 				return;
 			}

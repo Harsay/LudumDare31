@@ -3,6 +3,10 @@ package com.harsay.ld31;
 public class Goal {
 
 	public float x;
+	public float goalX;
+	public float goalY;
+	public float goalWidth;
+	public float goalHeight;
 	public float y;
 	public float width;
 	public float height;
@@ -20,12 +24,16 @@ public class Goal {
 	}
 	
 	public void setObstacle(Obstacle o) {
+		goalX = x;
 		if(x > -1) x = x - o.x;
 		else x = 0;
+		goalY = y;
 		if(y > -1) y = y - o.y;
 		else y = 0;
+		goalWidth = width;
 		if(width > -1) width = width - o.width;
 		else width = 0;
+		goalHeight = height;
 		if(height > -1) height = height - o.height;
 		else height = 0;
 	}
@@ -42,10 +50,10 @@ public class Goal {
 		
 		if(timeElapsed >= timeToDoIt) {
 			reached = true;
-			//if(x!=0) o.x = x;
-			//if(y!=0)o.y = y;
-			//if(width!=0)o.width = width;
-			//if(height!=0)o.height = height;
+			if(x!=0) o.x = goalX;
+			if(y!=0) o.y = goalY;
+			if(width!=0) o.width = goalWidth;
+			if(height!=0) o.height = goalHeight;
 		}
 	}
 }

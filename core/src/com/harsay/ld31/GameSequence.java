@@ -47,13 +47,44 @@ public class GameSequence {
 		sequences.add(seq0);
 		
 		seq1 = new Obstacle[] {
-				
+				new Obstacle(game, 0, MyGame.HEIGHT-80, MyGame.WIDTH, 80, 1.0F, new Goal[] { // Upper constraint
+						new Goal(-1f, -1f, -1f, -1f, 1.0f),
+						new Goal(-1f, 400, -1f, -1f, 2.0f),
+						new Goal(-1f, -1f, -1f, -1f, 1.0f),
+						new Goal(-1f, MyGame.HEIGHT-80, -1f, -1f, 4.0f),
+						new Goal(-1f, -1f, -1f, -1f, 7.0f),
+						new Goal(-1f, 200, -1f, -1f, 0.5f),
+						new Goal(-1f, -1f, -1f, -1f, 2.5f),
+				}),
+				new Obstacle(game, 0, 0, MyGame.WIDTH, 80, 1.0f, new Goal[] { // Down constraint
+						new Goal(-1f, -1f, -1f, -1f, 4.0f),
+						new Goal(-1f, MyGame.HEIGHT-400, -1f, -1f, 4.0f),
+						new Goal(-1f, -1f, -1f, -1f, 6.0f),
+						new Goal(-1f, 0, -1f, -1f, 1.0f),
+						new Goal(-1f, -1f, -1f, -1f, 3.0f),
+				}),
+				new Obstacle(game, 0, 0, 80, MyGame.HEIGHT, 1.0f, new Goal[] { // left constraint
+						new Goal(-1f, -1f, -1f, -1f, 4.0f),
+						new Goal(MyGame.WIDTH-400, -1f, -1f, -1f, 4.0f),
+						new Goal(-1f, -1f, -1f, -1f, 1.0f),
+						new Goal(MyGame.WIDTH/2-230, -1f, -1f, -1f, 4.0f),
+						new Goal(-1f, -1f, -1f, -1f, 5.0f)
+				}),
+				new Obstacle(game, MyGame.WIDTH-80, 0, 80, MyGame.HEIGHT, 1.0f, new Goal[] { // right constraint
+						new Goal(-1f, -1f, -1f, -1f, 1.0f),
+						new Goal(400, -1f, -1f, -1f, 2.0f),
+						new Goal(-1f, -1f, -1f, -1f, 1.0f),
+						new Goal(MyGame.WIDTH-80, -1f, -1f, -1f, 4.0f),
+						new Goal(-1f, -1f, -1f, -1f, 1.0f),
+						new Goal(MyGame.WIDTH/2+150, -1f, -1f, -1f, 4.0f),
+						new Goal(-1f, -1f, -1f, -1f, 5.0f)
+				})
 		};
 		sequences.add(seq1);
 	}
 	
 	public Obstacle[] getSequence(int id) {
-		return sequences.get(id);
+		return sequences.get(id+1);
 	}
 	
 	public void update() {

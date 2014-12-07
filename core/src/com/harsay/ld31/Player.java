@@ -11,7 +11,7 @@ public class Player extends Entity {
 	public float yAccel;
 	public float xAccel;
 	public float maxAccel = 20;
-	public float friction = 60; // 120?
+	public float friction = 120; // 120?
 	
 	public Circle circle;
 	
@@ -32,11 +32,11 @@ public class Player extends Entity {
 		
 		if(!alive) {
 			if(animateKill) {
-				radius += 800*delta;
-				if (radius > 80)  {
-					radius = 80;
+				//radius += 800*delta;
+				//if (radius > 80)  {
+				//	radius = 80;
 					animateKill = false;
-				}
+				//}
 			} 
 		} else {
 			checkInput(delta);

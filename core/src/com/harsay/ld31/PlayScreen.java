@@ -69,7 +69,7 @@ public class PlayScreen extends GameScreen {
 				Obstacle o = game.obstacles.get(i);
 				o.update(delta);
 				if(!o.spawning && !o.killed && player.collision(player.circle, o.rectangle)) {
-					endGame();
+					//endGame();
 				}
 			}
 		}

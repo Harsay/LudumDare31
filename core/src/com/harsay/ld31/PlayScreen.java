@@ -21,6 +21,8 @@ public class PlayScreen extends GameScreen {
 
 	public int seqID = 0;
 	
+	public boolean lost = false;
+	
 	public PlayScreen(MyGame game) {
 		super(game);
 		float c = (float) 32 / (float) 255;
@@ -43,6 +45,18 @@ public class PlayScreen extends GameScreen {
 		return new ArrayList<Obstacle>(Arrays.asList(sequences.getSequence(id)));
 	}
 	
+	public void flashScreen() {
+		foregroundColor.set(1, 1, 1, 1);
+		Timer.schedule(new Task() {
+
+			@Override
+			public void run() {
+				foregroundColor.set(0,0,0,0);
+			}
+			
+		}, 0.05f);
+	}
+	
 	public void update(float delta) {
 		super.update(delta);
 		
@@ -51,6 +65,7 @@ public class PlayScreen extends GameScreen {
 				gameLive = true;
 				Stopwatch.restart();
 				Stopwatch.start();
+				flashScreen();
 			} else {
 				return;
 			}
@@ -69,7 +84,7 @@ public class PlayScreen extends GameScreen {
 				Obstacle o = game.obstacles.get(i);
 				o.update(delta);
 				if(!o.spawning && !o.killed && player.collision(player.circle, o.rectangle)) {
-					//endGame();
+					endGame();
 				}
 			}
 		}
@@ -104,6 +119,7 @@ public class PlayScreen extends GameScreen {
 	}
 	
 	public void endGame() {
+		flashScreen();
 		player.kill();
 		Stopwatch.stop();
 		Timer.schedule(new Task() {
@@ -113,7 +129,6 @@ public class PlayScreen extends GameScreen {
 				game.setScreen(new PlayScreen(game));
 			}
 		}, 1.5f);
-		// TODO: end sequence
 	}
 	
 	public void addObstacle(float x, float y,float width, float height, float tts, float ta) {

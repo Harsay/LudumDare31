@@ -47,7 +47,8 @@ public class Player extends Entity {
 	
 	@Override
 	public void draw(ShapeRenderer sr, SpriteBatch sb) {
-		sr.setColor(1,1,1,1);
+		if(alive) sr.setColor(1,1,1,1);
+		else sr.setColor(1, 0, 0, 1);
 		sr.circle(circle.x, circle.y, circle.radius);
 	}
 	

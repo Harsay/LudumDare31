@@ -1,5 +1,8 @@
 package com.harsay.ld31;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -13,13 +16,19 @@ public class PlayScreen extends GameScreen {
 	public float time = 0;
 	
 	public boolean gameLive = false;
+	
+	public GameSequence sequences;
 
+	public int seqID = 0;
+	
 	public PlayScreen(MyGame game) {
 		super(game);
 		float c = (float) 32 / (float) 255;
 		backgroundColor.set(c, c, c, 1);
 		player = new Player(game, MyGame.WIDTH/2, MyGame.HEIGHT/2, 30);
-		addObstacle(600, 0, 300, 400, 1.0f, 5.0f);
+		sequences = new GameSequence(game);
+		game.obstacles = getSequence(seqID);
+		//addObstacle(600, 0, 300, 400, 1.0f, 5.0f);
 		/*for(int i=1; i<=20; i++) {
 			addObstacle(400*i, MyGame.HEIGHT-(500-100*i), 300, (500-100*i), 1.0f, new Goal[] {
 					new Goal(0, MyGame.HEIGHT-100, -1f, 100, 1.0f*i)
@@ -28,6 +37,10 @@ public class PlayScreen extends GameScreen {
 					new Goal(0, 0, -1f, 900, 1.0f*i)
 			});
 		}*/
+	}
+	
+	public ArrayList<Obstacle> getSequence(int id) {
+		return new ArrayList<Obstacle>(Arrays.asList(sequences.getSequence(id)));
 	}
 	
 	public void update(float delta) {
@@ -43,6 +56,12 @@ public class PlayScreen extends GameScreen {
 			}
 		}
 		
+		if(sequences.finished) {
+			seqID++;
+			sequences.finished = false;
+			if(seqID+1 <= sequences.sequences.size()) game.obstacles = getSequence(seqID);
+		}
+		sequences.update();
 		Stopwatch.update(delta);
 		player.update(delta);
 		if(player.alive) {

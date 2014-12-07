@@ -1,7 +1,8 @@
 package com.harsay.ld31;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import java.util.Arrays;
+import java.util.List;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -27,6 +28,10 @@ public class Obstacle extends Entity {
 	public float timeAlive;
 	public float timeAliveElapsed = 0;
 	
+	public List<Goal> goalsList;
+	public Goal presentGoal;
+	public int goalID = 0;
+	
 	public Obstacle(MyGame game, float x, float y, float width, float height, float timeToStartSpawning, float timeAlive) {
 		super(game, x, y);
 		this.width = width;
@@ -38,6 +43,14 @@ public class Obstacle extends Entity {
 		updateRectangle();
 	}
 	
+	public Obstacle(MyGame game, float x, float y, float width, float height, float timeToStartSpawning, Goal[] goals ) {
+		this(game, x, y, width, height, timeToStartSpawning, 0);
+		
+		goalsList = Arrays.asList(goals);
+		presentGoal = goalsList.get(goalID);
+		presentGoal.setObstacle(this);
+		
+	}
 	@Override
 	public void update(float delta) {
 		super.update(delta);
@@ -70,6 +83,16 @@ public class Obstacle extends Entity {
 		if(timeAlive > 0) {
 			timeAliveElapsed += delta;
 			if(timeAliveElapsed >= timeAlive) kill();
+		}
+		
+		presentGoal.update(this, delta);
+		if(presentGoal.reached) {
+			if(++goalID+1 > goalsList.size()) {
+				kill();
+			} else {
+				presentGoal = goalsList.get(goalID);
+				presentGoal.setObstacle(this);
+			}
 		}
 		
 		updateRectangle();

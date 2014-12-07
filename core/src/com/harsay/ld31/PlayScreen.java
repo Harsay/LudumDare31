@@ -15,9 +15,12 @@ public class PlayScreen extends GameScreen {
 		float c = (float) 32 / (float) 255;
 		backgroundColor.set(c, c, c, 1);
 		player = new Player(game, MyGame.WIDTH/2, MyGame.HEIGHT/2, 30);
-		addObstacle(600, 0, 300, 400, 3.0f, 5.0f);
-		addObstacle(100, 0, 300, 400, 1.0f, 3.0f);
-		addObstacle(1200, 0, 300, 400, 5.0f, 2.0f);
+		//addObstacle(600, 0, 300, 400, 1.0f, 1.0f);
+		addObstacle(600, 0, 300, 400, 1.0f, new Goal[] { 
+				new Goal(900f, MyGame.HEIGHT-600, 0f, 600f, 1.0f),
+				new Goal(1f, 0f, MyGame.WIDTH, 100f, 1.0f)
+		});
+		
 	}
 	
 	public void update(float delta) {
@@ -66,6 +69,10 @@ public class PlayScreen extends GameScreen {
 	
 	public void addObstacle(float x, float y,float width, float height, float tts, float ta) {
 		game.obstacles.add(new Obstacle(game, x, y, width, height, tts, ta));
+	}
+	
+	public void addObstacle(float x, float y,float width, float height, float tts, Goal[] goals) {
+		game.obstacles.add(new Obstacle(game, x, y, width, height, tts, goals));
 	}
 
 }

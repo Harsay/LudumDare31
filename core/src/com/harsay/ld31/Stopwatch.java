@@ -6,7 +6,7 @@ public class Stopwatch {
 	public static int minutes = 0;
 	public static int milliseconds = 0;
 	
-	public static boolean alive = true;
+	public static boolean alive = false;
 	
 	public static void update(float delta) {
 		
@@ -32,6 +32,10 @@ public class Stopwatch {
 		seconds = 0;
 		minutes = 0;
 		milliseconds = 0;
+	}
+	
+	public static void start() {
+		alive = true;
 	}
 	
 	public static String getString() {

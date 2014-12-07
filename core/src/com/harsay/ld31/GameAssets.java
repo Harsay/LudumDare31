@@ -34,7 +34,7 @@ public class GameAssets {
 		big = generator.generateFont(parameter); 
 		parameter.size = 72;
 		medium = generator.generateFont(parameter);
-		parameter.size = 18;
+		parameter.size = 36;
 		small = generator.generateFont(parameter);
 		generator.dispose();
 		

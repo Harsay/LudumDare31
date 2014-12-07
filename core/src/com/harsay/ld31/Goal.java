@@ -38,7 +38,7 @@ public class Goal {
 		o.width += width * delta / timeToDoIt;
 		o.height += height * delta / timeToDoIt;
 		
-		System.out.println("Time elapsed: "+timeElapsed+" | x = "+o.x);
+		//System.out.println("Time elapsed: "+timeElapsed+" | x = "+o.x);
 		
 		if(timeElapsed >= timeToDoIt) {
 			reached = true;

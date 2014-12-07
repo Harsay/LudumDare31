@@ -3,6 +3,8 @@ package com.harsay.ld31;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 
 public class PlayScreen extends GameScreen {
 	
@@ -17,7 +19,7 @@ public class PlayScreen extends GameScreen {
 		float c = (float) 32 / (float) 255;
 		backgroundColor.set(c, c, c, 1);
 		player = new Player(game, MyGame.WIDTH/2, MyGame.HEIGHT/2, 30);
-		//addObstacle(600, 0, 300, 400, 1.0f, 1.0f);
+		addObstacle(600, 0, 300, 400, 1.0f, 5.0f);
 		/*for(int i=1; i<=20; i++) {
 			addObstacle(400*i, MyGame.HEIGHT-(500-100*i), 300, (500-100*i), 1.0f, new Goal[] {
 					new Goal(0, MyGame.HEIGHT-100, -1f, 100, 1.0f*i)
@@ -32,8 +34,9 @@ public class PlayScreen extends GameScreen {
 		super.update(delta);
 		
 		if(!gameLive) {
-			if(Gdx.input.isKeyPressed(GameKeys.UP) || Gdx.input.isKeyPressed(GameKeys.DOWN) || Gdx.input.isKeyPressed(GameKeys.LEFT) || Gdx.input.isKeyPressed(GameKeys.RIGHT)) {
+			if(Gdx.input.isKeyJustPressed(GameKeys.UP) || Gdx.input.isKeyJustPressed(GameKeys.DOWN) || Gdx.input.isKeyJustPressed(GameKeys.LEFT) || Gdx.input.isKeyJustPressed(GameKeys.RIGHT)) {
 				gameLive = true;
+				Stopwatch.restart();
 				Stopwatch.start();
 			} else {
 				return;
@@ -82,10 +85,15 @@ public class PlayScreen extends GameScreen {
 	}
 	
 	public void endGame() {
-		game.obstacles.clear();
-		game.setScreen(new PlayScreen(game));
 		player.kill();
 		Stopwatch.stop();
+		Timer.schedule(new Task() {
+			@Override
+			public void run() {
+				game.obstacles.clear();
+				game.setScreen(new PlayScreen(game));
+			}
+		}, 1.5f);
 		// TODO: end sequence
 	}
 	

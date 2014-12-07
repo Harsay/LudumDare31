@@ -29,7 +29,7 @@ public class Obstacle extends Entity {
 	public float timeAliveElapsed = 0;
 	
 	public List<Goal> goalsList;
-	public Goal presentGoal;
+	public Goal presentGoal = null;
 	public int goalID = 0;
 	
 	public Obstacle(MyGame game, float x, float y, float width, float height, float timeToStartSpawning, float timeAlive) {
@@ -85,13 +85,15 @@ public class Obstacle extends Entity {
 			if(timeAliveElapsed >= timeAlive) kill();
 		}
 		
-		presentGoal.update(this, delta);
-		if(presentGoal.reached) {
-			if(++goalID+1 > goalsList.size()) {
-				kill();
-			} else {
-				presentGoal = goalsList.get(goalID);
-				presentGoal.setObstacle(this);
+		if(presentGoal != null) {
+			presentGoal.update(this, delta);
+			if(presentGoal.reached) {
+				if(++goalID+1 > goalsList.size()) {
+					kill();
+				} else {
+					presentGoal = goalsList.get(goalID);
+					presentGoal.setObstacle(this);
+				}
 			}
 		}
 		

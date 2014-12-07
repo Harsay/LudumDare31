@@ -26,7 +26,7 @@ public class WinScreen extends GameScreen {
 			game.assets.big.setColor(1, 1, 1, 1);
 			game.assets.big.drawMultiLine(spriteBatch, "YOU WON!", 500, 800);
 			game.assets.medium.draw(spriteBatch, "Thanks for playing! Press arrows to continue.", 50, 400);
-			game.assets.small.draw(spriteBatch, "Game made by Harsay for Ludum Dare 31 compo. Press F11 to toggle fullscreen mode.", 100, 36);
+			game.assets.small.draw(spriteBatch, "Game made by Harsay for Ludum Dare 31 compo. F11 - toggle fullscren, P - toggle music", 70, 36);
 		}
 		spriteBatch.end();
 	}

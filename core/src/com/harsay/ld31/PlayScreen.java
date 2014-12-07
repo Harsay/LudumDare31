@@ -120,7 +120,7 @@ public class PlayScreen extends GameScreen {
 				game.assets.big.setColor(1, 1, 1, 1);
 				game.assets.big.drawMultiLine(spriteBatch, "ULTRA REKTAGON", 130, 800);
 				game.assets.medium.draw(spriteBatch, "Press arrows to move.", 500, 400);
-				game.assets.small.draw(spriteBatch, "Game made by Harsay for Ludum Dare 31 compo. Press F11 to toggle fullscreen mode.", 100, 36);
+				game.assets.small.draw(spriteBatch, "Game made by Harsay for Ludum Dare 31 compo. F11 - toggle fullscren, P - toggle music", 70, 36);
 			}
 			game.assets.medium.draw(spriteBatch, Stopwatch.getString(), 20, MyGame.HEIGHT-20);
 		}

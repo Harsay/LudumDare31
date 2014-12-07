@@ -104,8 +104,8 @@ public class Obstacle extends Entity {
 	public void draw(ShapeRenderer sr, SpriteBatch sb) {
 		float c = (float) 15 / (float) 255;
 		if(show) {
-			if(spawning) sr.setColor(1, 1, 1, 0.1f);
-			else sr.setColor(c, c, c, 1);
+			//if(spawning) sr.setColor(0, 0, 0, 1);
+			sr.setColor(c, c, c, 1);
 			sr.rect(x, y, width, height);
 		}
 	}

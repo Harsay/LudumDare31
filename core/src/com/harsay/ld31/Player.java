@@ -120,6 +120,7 @@ public class Player extends Entity {
 	}
 	
 	public void kill() {
+		game.assets.rektSound.play();
 		game.assets.lostSound.play();
 		alive = false;
 		animateKill = true;

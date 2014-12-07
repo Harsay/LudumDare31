@@ -31,6 +31,7 @@ public class PlayScreen extends GameScreen {
 		player = new Player(game, MyGame.WIDTH/2, MyGame.HEIGHT/2, 30);
 		sequences = new GameSequence(game);
 		game.obstacles = getSequence(seqID);
+		game.assets.introSound.play();
 	}
 	
 	public ArrayList<Obstacle> getSequence(int id) {

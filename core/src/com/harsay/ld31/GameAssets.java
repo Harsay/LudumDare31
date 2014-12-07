@@ -15,6 +15,9 @@ public class GameAssets {
 	Sound warnSound;
 	Sound startSound;
 	Sound lostSound;
+	Sound introSound;
+	Sound rektSound;
+	Sound wonSound;
 	
 	TextureAtlas atlas;
 	
@@ -43,6 +46,9 @@ public class GameAssets {
 		warnSound = Gdx.audio.newSound(loadFile("warn.wav"));
 		startSound = Gdx.audio.newSound(loadFile("start.wav"));
 		lostSound = Gdx.audio.newSound(loadFile("lost.wav"));
+		introSound = Gdx.audio.newSound(loadFile("intro.ogg"));
+		rektSound = Gdx.audio.newSound(loadFile("rekt.ogg"));
+		wonSound = Gdx.audio.newSound(loadFile("won.ogg"));
 
 	}
 	

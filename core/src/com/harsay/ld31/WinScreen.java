@@ -8,6 +8,7 @@ public class WinScreen extends GameScreen {
 		super(game);
 		float c = (float) 32 / (float) 255;
 		backgroundColor.set(c, c, c, 1);
+		game.assets.wonSound.play();
 	}
 	
 	public void update(float delta) {
